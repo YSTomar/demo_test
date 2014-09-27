@@ -30,10 +30,11 @@
     <%= error_span(@leacture[:description]) %>
   </div>
   <div class="control-group">
-    <%= f.label :presentation_id, :class => 'control-label' %>
+    <%= f.label :presentation_id, 'Choose existing presentations', :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :presentation_id, :class => 'form-control' %>
+      <%= f.select :presentation_id, Presentation.all.collect{|p| [ p.title, p.id ] }, :class => 'form-control' %>
     </div>
+    or create your <%= link_to 'own presentation', new_presentation_path%>
     <%= error_span(@leacture[:presentation_id]) %>
   </div>
 
