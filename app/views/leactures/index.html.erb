@@ -1,0 +1,29 @@
+<h1>Listing leactures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Presentation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leactures.each do |leacture| %>
+      <tr>
+        <td><%= leacture.title %></td>
+        <td><%= leacture.description %></td>
+        <td><%= leacture.presentation_id %></td>
+        <td><%= link_to 'Show', leacture %></td>
+        <td><%= link_to 'Edit', edit_leacture_path(leacture) %></td>
+        <td><%= link_to 'Destroy', leacture, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Leacture', new_leacture_path %>

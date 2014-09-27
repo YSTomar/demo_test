@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @leacture.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @leacture.description %>
+</p>
+
+<p>
+  <strong>Presentation:</strong>
+  <%= @leacture.presentation_id %>
+</p>
+
+<%= link_to 'Edit', edit_leacture_path(@leacture) %> |
+<%= link_to 'Back', leactures_path %>

@@ -1,0 +1,2 @@
+module LeacturesHelper
+end
