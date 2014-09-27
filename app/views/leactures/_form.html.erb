@@ -20,9 +20,11 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :presentation_id %><br>
-    <%= f.number_field :presentation_id %>
+    <%= f.label :presentation_id, 'Choose from existing presentation' %><br>
+    <%= f.select :presentation_id, Presentation.all.collect {|p| [ p.title, p.id ] } %>
   </div>
+
+  Or you can upload the presetation from <%= link_to 'Here',presentations_path%>
   <div class="actions">
     <%= f.submit %>
   </div>
