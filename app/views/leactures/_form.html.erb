@@ -1,31 +1,45 @@
-<%= form_for(@leacture) do |f| %>
-  <% if @leacture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@leacture.errors.count, "error") %> prohibited this leacture from being saved:</h2>
+<%= form_for @leacture, :html => { :class => "form-horizontal leacture" } do |f| %>
 
-      <ul>
-      <% @leacture.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @leacture.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@leacture.errors.count, "error") %> prohibited this leacture from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @leacture.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%= error_span(@leacture[:title]) %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'form-control' %>
+    </div>
+    <%= error_span(@leacture[:description]) %>
   </div>
-  <div class="field">
-    <%= f.label :presentation_id, 'Choose from existing presentation' %><br>
-    <%= f.select :presentation_id, Presentation.all.collect {|p| [ p.title, p.id ] } %>
+  <div class="control-group">
+    <%= f.label :presentation_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :presentation_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@leacture[:presentation_id]) %>
   </div>
 
-  Or you can upload the presetation from <%= link_to 'Here',presentations_path%>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            leactures_path, :class => 'btn btn-default' %>
+
 <% end %>

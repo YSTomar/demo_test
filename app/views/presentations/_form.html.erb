@@ -1,30 +1,45 @@
-<%= form_for(@presentation, :html => { :multipart => true }) do |f| %>
-  <% if @presentation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@presentation.errors.count, "error") %> prohibited this presentation from being saved:</h2>
+<%= form_for @presentation, :html => { :class => "form-horizontal presentation" } do |f| %>
 
-      <ul>
-      <% @presentation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @presentation.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@presentation.errors.count, "error") %> prohibited this presentation from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @presentation.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%= error_span(@presentation[:title]) %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'form-control' %>
+    </div>
+    <%= error_span(@presentation[:description]) %>
   </div>
-  <div class="field">
-    <%= f.label :document %><br>
-    <%= f.file_field :document %>
+  <div class="control-group">
+    <%= f.label :document,'Upload ppt/pptx', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :document, :class => 'form-control' %>
+    </div>
+    <%= error_span(@presentation[:description]) %>
   </div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            presentations_path, :class => 'btn btn-default' %>
+
 <% end %>
