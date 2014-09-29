@@ -42,6 +42,9 @@ class LeacturesController < ApplicationController
   # PATCH/PUT /leactures/1
   # PATCH/PUT /leactures/1.json
   def update
+    if params['leacture']['p_document'].nil?
+      @leacture.p_document = Presentation.find(params['leacture']['presentation_id']).document
+    end
     respond_to do |format|
       if @leacture.update(leacture_params)
         format.html { redirect_to @leacture, notice: 'Leacture was successfully updated.' }
