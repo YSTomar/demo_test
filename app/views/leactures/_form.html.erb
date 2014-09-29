@@ -29,12 +29,20 @@
     </div>
     <%= error_span(@leacture[:description]) %>
   </div>
+
+  <div class="control-group">
+    <%= f.label :p_document,'Upload new ppt/pptx', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.file_field :p_document, :class => 'form-control' %>
+    </div>
+    <%= error_span(@leacture[:p_document]) %>
+  </div>  
+  Or <br/>
   <div class="control-group">
     <%= f.label :presentation_id, 'Choose existing presentations', :class => 'control-label' %>
     <div class="controls">
       <%= f.select :presentation_id, Presentation.all.collect{|p| [ p.title, p.id ] }, :class => 'form-control' %>
     </div>
-    or create your <%= link_to 'own presentation', new_presentation_path%>
     <%= error_span(@leacture[:presentation_id]) %>
   </div>
 

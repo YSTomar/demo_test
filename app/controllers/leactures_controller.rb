@@ -25,7 +25,9 @@ class LeacturesController < ApplicationController
   # POST /leactures.json
   def create
     @leacture = Leacture.new(leacture_params)
-
+    if params['leacture']['p_document'].nil?
+      @leacture.p_document = Presentation.find(params['leacture']['presentation_id']).document
+    end
     respond_to do |format|
       if @leacture.save
         format.html { redirect_to @leacture, notice: 'Leacture was successfully created.' }
@@ -69,6 +71,6 @@ class LeacturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def leacture_params
-      params.require(:leacture).permit(:title, :description, :presentation_id)
+      params.require(:leacture).permit(:title, :description, :p_title, :p_description, :p_document)
     end
 end

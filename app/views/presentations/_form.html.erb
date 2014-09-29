@@ -34,9 +34,8 @@
     <div class="controls">
       <%= f.file_field :document, :class => 'form-control' %>
     </div>
-    <%= error_span(@presentation[:description]) %>
+    <%= error_span(@presentation[:document]) %>
   </div>
-
 
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

@@ -10,6 +10,7 @@
   <dd><%= @leacture.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:presentation_id) %>:</strong></dt>
   <dd><%= @leacture.presentation_id %></dd>
+  <dd><iframe src="https://docs.google.com/viewer?url=<%= URI.escape(request.protocol+request.host+':'+request.port.to_s + @leacture.p_document.url) -%>&embedded=true" style="width:600px; height:400px;" frameborder="0"></iframe><dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
